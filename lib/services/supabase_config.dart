@@ -1,0 +1,19 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+class SupabaseConfig {
+  static const String supabaseUrl = 'https://tbzouaaoasbxuztngdqd.supabase.co';
+  static const String supabaseAnonKey = 'sb_publishable_kF0Wx0c-Fi1HJTHoE9GhfA_eLxeU4zI';
+
+  static Future<void> initialize() async {
+    await Supabase.initialize(
+      url: supabaseUrl,
+      anonKey: supabaseAnonKey,
+    );
+  }
+
+  static SupabaseClient get client => Supabase.instance.client;
+  
+  static User? get currentUser => client.auth.currentUser;
+  
+  static bool get isUserLoggedIn => currentUser != null;
+}
